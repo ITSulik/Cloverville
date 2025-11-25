@@ -1,2 +1,2 @@
 # Cloverville
-Bob wants a 
+Bob wants an app
