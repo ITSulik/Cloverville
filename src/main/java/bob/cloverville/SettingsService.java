@@ -1,5 +1,7 @@
 package bob.cloverville;
 
+import java.time.LocalDate;
+
 public class SettingsService {
 
   private final JsonStorage<Settings> storage;
@@ -37,9 +39,10 @@ public class SettingsService {
   }
 
   // Update bonus rules
-  public void setBonusRules(int lowParticipationThreshold, int bonusPercent) {
-    settings.setLowParticipationThreshold(lowParticipationThreshold);
-    settings.setBonusPercent(bonusPercent);
-    save();
+  public boolean isWeeklyResetDue() {
+    LocalDate lastReset = settings.getLastResetDate();
+    LocalDate now = LocalDate.now();
+    return lastReset.plusWeeks(1).isBefore(now) || lastReset.plusWeeks(1).isEqual(now);
   }
+
 }

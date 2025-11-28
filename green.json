@@ -1,0 +1,14 @@
+[
+  {
+    "id": "f04ef940-2b2f-4fad-bd72-f199c8bd9d41",
+    "title": "Watered the plants",
+    "description": "Watered community garden zone A",
+    "type": "GREEN",
+    "pointValue": 5,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-02-01",
+    "deadline": null,
+    "completedAt": null
+  }
+]

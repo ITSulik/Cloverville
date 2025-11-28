@@ -1,0 +1,14 @@
+[
+  {
+    "id": "f4bce2d5-72bb-4dc5-8569-4cc934e6f6ca",
+    "title": "Helped clean room",
+    "description": "Helped Anna clean room",
+    "type": "TRADE_TASK",
+    "pointValue": 10,
+    "performerID": "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54",
+    "receiverID": null,
+    "createdAt": "2025-02-02",
+    "deadline": "2025-02-04",
+    "completedAt": null
+  }
+]

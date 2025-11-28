@@ -3,6 +3,7 @@ package bob.cloverville;
 import java.util.UUID;
 
 public class Member {
+
   private final UUID id;
   private String name;
   private int personalPoints;
@@ -10,43 +11,44 @@ public class Member {
 
   public Member(String name) {
     this.id = UUID.randomUUID();
-    this.name = name;
+    setName(name); // validate on creation
     this.personalPoints = 10; // Starting points
     this.totalTasksCompleted = 0;
   }
 
-  public UUID getId()
-  {
+  public UUID getId() {
     return id;
   }
 
-  public String getName()
-  {
+  public String getName() {
     return name;
   }
 
-  public int getPersonalPoints()
-  {
+  public int getPersonalPoints() {
     return personalPoints;
   }
 
-  public int getTotalTasksCompleted()
-  {
+  public int getTotalTasksCompleted() {
     return totalTasksCompleted;
   }
 
-  public void setName(String name)
-  {
+  public void setName(String name) {
+    if (name == null || name.isBlank())
+      throw new IllegalArgumentException("Name cannot be empty");
+    if (!name.matches("[a-zA-Z0-9 ]+"))
+      throw new IllegalArgumentException("Name cannot contain special characters like $#%.");
     this.name = name;
   }
 
-  public void setPoints(int personalPoints)
-  {
+  public void setPoints(int personalPoints) {
+    if (personalPoints < 0)
+      throw new IllegalArgumentException("Points cannot be negative");
     this.personalPoints = personalPoints;
   }
 
-  public void setTotalTasksCompleted(int totalTasksCompleted)
-  {
+  public void setTotalTasksCompleted(int totalTasksCompleted) {
+    if (totalTasksCompleted < 0)
+      throw new IllegalArgumentException("Total tasks completed cannot be negative");
     this.totalTasksCompleted = totalTasksCompleted;
   }
 
@@ -55,16 +57,14 @@ public class Member {
   }
 
   public void addPoints(int amount) {
+    if (amount < 0)
+      throw new IllegalArgumentException("Points to add must be zero or positive");
     this.personalPoints += amount;
   }
 
   public void subtractPoints(int amount) {
+    if (amount < 0)
+      throw new IllegalArgumentException("Points to subtract must be zero or positive");
     this.personalPoints = Math.max(0, this.personalPoints - amount);
   }
-
-  public void applyBonus(double percent) {
-    int bonus = (int) Math.round(personalPoints * percent);
-    this.personalPoints += bonus;
-  }
-
 }
