@@ -145,6 +145,14 @@ public class ActivityService {
   public List<Activity> getGreens() { return new ArrayList<>(greens); }
   public List<Activity> getTrades() { return new ArrayList<>(trades); }
   public List<Activity> getCommunal() { return new ArrayList<>(communal); }
+  public List<Activity> getAll(){
+    List<Activity> all = new ArrayList<>();
+    all.addAll(greens);
+    all.addAll(trades);
+    all.addAll(communal);
+    return all;
+  }
+
 
   public Activity getById(UUID id) {
     if (id == null) return null;

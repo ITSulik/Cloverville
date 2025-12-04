@@ -1,0 +1,26 @@
+[
+  {
+    "id": "a52f8a6d-d914-4bf6-9c0c-d2e9c16b72ce",
+    "title": "Organize movie night",
+    "description": "Set up projector and seating",
+    "pointValue": 15,
+    "performerID": "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54",
+    "receiverID": "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54",
+    "createdAt": "2026-02-05",
+    "deadline": "2026-02-08",
+    "completedAt": "2025-12-04",
+    "type": "COMMUNAL"
+  },
+  {
+    "id": "d0d0d3cf-e042-47e4-b846-c53486e56fe3",
+    "title": "Chop down Trees",
+    "description": "Chop down Trees on Zone A",
+    "pointValue": 20,
+    "performerID": "aa8bb761-c406-49e9-bfad-7d89f7ff9794",
+    "receiverID": null,
+    "createdAt": "2025-12-04",
+    "deadline": "2025-12-11",
+    "completedAt": "2025-12-04",
+    "type": "COMMUNAL"
+  }
+]

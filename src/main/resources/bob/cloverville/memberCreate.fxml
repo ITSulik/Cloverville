@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.MemberCreateController"
+      spacing="15">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Name -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Name:"/>
+        <TextField fx:id="txtName" prefWidth="200"/>
+    </HBox>
+
+    <!-- Points -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Points:"/>
+        <Spinner fx:id="spnPoints" prefWidth="100"/>
+    </HBox>
+
+    <!-- Total Tasks Completed -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Total Tasks Completed:"/>
+        <Spinner fx:id="spnTasksCompleted" prefWidth="100"/>
+    </HBox>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Button text="Create" fx:id="btnCreate" onAction="#createMember"/>
+        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"/>
+    </HBox>
+</VBox>

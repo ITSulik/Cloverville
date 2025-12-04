@@ -4,16 +4,16 @@ import java.util.UUID;
 
 public class Member {
 
-  private final UUID id;
+  private UUID id;
   private String name;
   private int personalPoints;
   private int totalTasksCompleted;
 
-  public Member(String name) {
+  public Member(String name, int p, int t) {
     this.id = UUID.randomUUID();
     setName(name); // validate on creation
-    this.personalPoints = 10; // Starting points
-    this.totalTasksCompleted = 0;
+    this.personalPoints = p; // Starting points
+    this.totalTasksCompleted = t;
   }
 
   public UUID getId() {

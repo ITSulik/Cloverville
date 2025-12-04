@@ -11,7 +11,9 @@ module bob.cloverville {
   requires org.kordamp.bootstrapfx.core;
   requires eu.hansolo.tilesfx;
 
-  opens bob.cloverville to javafx.fxml;
-//  opens bob.cloverville.JsonStorage to com.google.gson;
+
+  opens bob.cloverville to com.google.gson, javafx.fxml;
+  opens bob.cloverville.controllers to javafx.fxml;
   exports bob.cloverville;
+  exports bob.cloverville.controllers;
 }

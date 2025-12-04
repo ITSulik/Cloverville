@@ -114,13 +114,25 @@ public class MemberService {
     return result;
   }
 
-  public void updateMember(Member m) {
-    if (m == null || !members.containsKey(m.getId()))
+  public void updateMember(Member updated) {
+    if (updated == null)
+      throw new IllegalArgumentException("Member cannot be null");
+
+    Member existing = members.get(updated.getId());
+    if (existing == null)
       throw new IllegalArgumentException("Member does not exist");
-    validateMember(m);
-    members.put(m.getId(), m);
+
+    validateMember(updated);
+
+    // ✔ Update fields on the stored instance
+    existing.setName(updated.getName());
+    existing.setPoints(updated.getPersonalPoints());
+    existing.setTotalTasksCompleted(updated.getTotalTasksCompleted());
+
+    // ✔ Save updated map
     save();
   }
+
 
   public void resetAllPoints() {
     for (Member m : members.values()) {

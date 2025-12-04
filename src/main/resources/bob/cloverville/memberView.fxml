@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.MemberViewController"
+      spacing="15">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Member Details" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Personal Points:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="lblPoints" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Tasks Completed:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label fx:id="lblTasksCompleted" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="center_right">
+        <Button text="Edit" fx:id="btnEdit" />
+        <Button text="Delete" fx:id="btnDelete" />
+        <Button text="Close" fx:id="btnClose" />
+    </HBox>
+</VBox>

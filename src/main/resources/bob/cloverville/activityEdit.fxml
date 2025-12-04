@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.ActivityEditController"
+      spacing="15">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- ID and CreatedAt (non-editable) -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Created At:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="lblCreatedAt" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Title and Description -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTitle" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Description:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtDescription" prefRowCount="4" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Points -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Points:"/>
+        <Spinner fx:id="spnPoints" prefWidth="100"/>
+    </HBox>
+
+    <!-- Deadline -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Deadline:"/>
+        <DatePicker fx:id="dpDeadline"/>
+    </HBox>
+
+    <!-- Performer and Receiver -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Performer:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbPerformer" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+
+        <Label text="Receiver:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbReceiver" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="200"/>
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Button text="Save" fx:id="btnSave" onAction="#saveChanges"/>
+        <Button text="Complete Activity" fx:id="btnComplete" onAction="#completeActivity"/>
+        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"/>
+    </HBox>
+
+</VBox>

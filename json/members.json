@@ -1,0 +1,14 @@
+{
+  "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54": {
+    "id": "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54",
+    "name": "Bob",
+    "personalPoints": 45,
+    "totalTasksCompleted": 1
+  },
+  "aa8bb761-c406-49e9-bfad-7d89f7ff9794": {
+    "id": "aa8bb761-c406-49e9-bfad-7d89f7ff9794",
+    "name": "Medvetchi Valentin",
+    "personalPoints": 20,
+    "totalTasksCompleted": 1
+  }
+}

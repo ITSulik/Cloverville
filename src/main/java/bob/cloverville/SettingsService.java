@@ -10,10 +10,7 @@ public class SettingsService {
   public SettingsService(JsonStorage<Settings> storage) {
     this.storage = storage;
     this.settings = storage.loadSingle();
-    if (this.settings == null) {
-      this.settings = new Settings();
-      save();
-    }
+
   }
 
   // Get the current settings object

@@ -8,8 +8,8 @@ public class Settings {
   private LocalDate lastResetDate;
 
   // Default constructor for JSON deserialization
-  public Settings() {
-    this.communityPoints = 0;
+  public Settings(int points) {
+    this.communityPoints = points;
     this.lastResetDate = LocalDate.now();
   }
 
