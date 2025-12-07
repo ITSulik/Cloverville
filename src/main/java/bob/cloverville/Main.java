@@ -12,7 +12,7 @@ public class Main extends Application {
 
     AppContext.get();
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
     Scene scene = new Scene(loader.load());
     stage.setScene(scene);
     stage.show();
