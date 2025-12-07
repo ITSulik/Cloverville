@@ -1,1 +1,134 @@
-[]
+[
+  {
+    "id": "000f37c5-dadc-49a2-8c44-60b50d705c16",
+    "type": "TRADE_TASK",
+    "title": "Repair my Broken Chair",
+    "description": "I need my wobbly chair fixed.",
+    "pointValue": 7,
+    "performerID": "d67af39d-b4ed-4e40-8709-33afb26b8d0e",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "4a3f0e5a-ca7e-4d3f-b24e-d873cf490da7",
+    "type": "TRADE_TASK",
+    "title": "Assemble IKEA Shelf",
+    "description": "I need help assembling my medium-sized Ikea shelving unit.",
+    "pointValue": 10,
+    "performerID": "e1d2cb1c-71ae-4e92-bf8b-2cb7ff9ceac5",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "29ade272-0de3-4f01-ac90-10871775d53f",
+    "type": "TRADE_TASK",
+    "title": "Help Move Boxes",
+    "description": "Require help with moving boxes during home cleanup.",
+    "pointValue": 15,
+    "performerID": "e2bde388-b79b-4b8e-84a4-ff8a4670b921",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-10",
+    "completedAt": null
+  },
+  {
+    "id": "9d2e4d7e-c317-49c7-ac39-a65aca22874a",
+    "type": "TRADE_TASK",
+    "title": "Fix Laptop Wi-Fi Issue",
+    "description": "Troubleshoot and fix the Wi-Fi connection on my laptop please.",
+    "pointValue": 13,
+    "performerID": "c0d39a66-acc5-49ba-bb07-8e8f3fb6765d",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "e484b2a8-d5a3-449a-abfe-af44870e66ac",
+    "type": "TRADE_TASK",
+    "title": "Gardening Assistance",
+    "description": "Weeding and watering plants in a my Garden.",
+    "pointValue": 8,
+    "performerID": "a21e8c83-9475-42ed-a28f-f6681419548a",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-10",
+    "completedAt": null
+  },
+  {
+    "id": "babe6fa3-62e7-465e-a3c8-ef9a26ed0dac",
+    "type": "TRADE_TASK",
+    "title": "Babysitting for an Hour",
+    "description": "Watch a my child for two hours.",
+    "pointValue": 14,
+    "performerID": "ae0a8a60-f80e-45be-ae76-35b8af68b897",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "afd89580-923a-4926-b036-60f36d3e9ad5",
+    "type": "TRADE_TASK",
+    "title": "Clean Kitchen Counters",
+    "description": "Wipe and disinfect kitchen surfaces",
+    "pointValue": 20,
+    "performerID": "f1756d31-68a0-4f16-b151-2b7eed993bba",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "a0508e9f-a153-4fbd-b799-3c6a93431915",
+    "type": "TRADE_GOODS",
+    "title": "Trade: Homemade Bread",
+    "description": "Sharing a freshly baked loaf of sourdough bread.",
+    "pointValue": 5,
+    "performerID": "ed6a6d7b-0c4f-4f78-a6ef-6dbdf1e3bf29",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-10",
+    "completedAt": null
+  },
+  {
+    "id": "d2b1cc1b-ba2d-4978-95a6-63fb8e312785",
+    "type": "TRADE_GOODS",
+    "title": "Fresh Apples",
+    "description": "Providing a bag of fresh apples",
+    "pointValue": 7,
+    "performerID": "f88242c8-c422-42c3-9ad4-88b180df7bff",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-11",
+    "completedAt": null
+  },
+  {
+    "id": "33ae1323-37da-4c4b-b058-05e08b8a4d47",
+    "type": "TRADE_GOODS",
+    "title": "Trade: Handcrafted Soap",
+    "description": "A bar of lavender handmade soap.",
+    "pointValue": 5,
+    "performerID": "da7f3c83-e7e8-47e5-8180-1abd8ac88f4e",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "da4f6054-ad35-4af4-98d4-66886834673b",
+    "type": "TRADE_GOODS",
+    "title": "Trade: Winter Scarf",
+    "description": "Knitted wool scarf in excellent condition.",
+    "pointValue": 10,
+    "performerID": "ae494a45-6bb0-4db8-a3af-96478e9cf5cc",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  }
+]

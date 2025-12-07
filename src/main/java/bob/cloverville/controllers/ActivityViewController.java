@@ -69,8 +69,4 @@ public class ActivityViewController {
     closeWindow();
   }
 
-
-  // Optional: expose public handlers so Dashboard can call
-  public Button getBtnEdit() { return btnEdit; }
-  public Button getBtnDelete() { return btnDelete; }
 }

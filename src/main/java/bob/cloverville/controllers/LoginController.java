@@ -31,10 +31,9 @@ public class LoginController {
       String username = usernameField.getText();
       String password = passwordField.getText();
 
-      if (username == null || username.isBlank())
-        throw new IllegalArgumentException("Please enter your username.");
-      if (password == null || password.isBlank())
-        throw new IllegalArgumentException("Please enter your password.");
+      if (username == null || username.isBlank() || password == null || password.isBlank())
+        throw new IllegalArgumentException("Please enter your credentials.");
+
 
       UserAccount acc = userAccService.authenticate(username, password);
 
@@ -42,7 +41,7 @@ public class LoginController {
         UIUtils.setInlineError(errorLabel, "Invalid username or password.");
         return;
       }
-
+      AppContext.get().setCurrentUser(acc);
       // SUCCESS: switch scene
       Stage stage = (Stage) usernameField.getScene().getWindow();
       UIUtils.switchScene(stage, "/bob/cloverville/dashboard.fxml", "Cloverville — Dashboard");

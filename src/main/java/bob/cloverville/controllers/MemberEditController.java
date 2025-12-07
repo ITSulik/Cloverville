@@ -29,20 +29,28 @@ public class MemberEditController {
 
   @FXML
   public void initialize() {
-    btnCancel.setOnAction(e -> ((Stage) btnCancel.getScene().getWindow()).close());
+  }
 
-    btnSave.setOnAction(e -> {
+  @FXML
+  private void saveChanges() {
+    {
       try {
         member.setName(txtName.getText().trim());
         member.setPoints(Integer.parseInt(txtPoints.getText().trim()));
         member.setTotalTasksCompleted(Integer.parseInt(txtTasksCompleted.getText().trim()));
 
         memberService.updateMember(member);
+        AppContext.get().getDashboardController().loadMembersView();
         ((Stage) btnSave.getScene().getWindow()).close();
       } catch (Exception ex) {
         ex.printStackTrace();
-        // optionally show an alert for validation errors
       }
-    });
+    }
+  }
+
+  @FXML
+  private void closeWindow() {
+    Stage stage = (Stage) btnCancel.getScene().getWindow();
+    stage.close();
   }
 }

@@ -26,7 +26,7 @@ public class UserAccService {
         return acc;
       }
     }
-    return null; // rule #9
+    return null;
   }
 
   // ---------- ADD USER ----------

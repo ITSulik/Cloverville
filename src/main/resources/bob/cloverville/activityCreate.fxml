@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="bob.cloverville.controllers.ActivityCreateController"
-      spacing="15">
+<VBox spacing="20" style="-fx-background-color: #f4faf3; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bob.cloverville.controllers.ActivityCreateController">
+
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets bottom="25" left="30" right="30" top="25" />
     </padding>
 
-    <!-- Type selector -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Activity Type:"/>
-        <ComboBox fx:id="cbType"/>
-    </HBox>
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" text="Create Activity" />
 
-    <!-- Title and Description -->
-    <GridPane hgap="10" vgap="10">
-        <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtTitle" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <Label text="Description:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextArea fx:id="txtDescription" prefRowCount="4" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    </GridPane>
+    <!-- Unified GridPane for all inputs -->
+    <GridPane hgap="20" vgap="15">
 
-    <!-- Points -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Points:"/>
-        <Spinner fx:id="spnPoints" prefWidth="100"/>
-    </HBox>
+        <!-- Activity Type -->
+        <Label style="-fx-font-weight: bold;" text="Activity Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <ComboBox fx:id="cbType" prefWidth="280" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-    <!-- Deadline -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Deadline:"/>
-        <DatePicker fx:id="dpDeadline"/>
-    </HBox>
+        <!-- Title -->
+        <Label style="-fx-font-weight: bold;" text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtTitle" prefWidth="280" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <!-- Performer and Receiver -->
-    <GridPane hgap="10" vgap="10">
-        <Label text="Performer:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="cbPerformer" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <Label text="Receiver:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="cbReceiver" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <!-- Description -->
+        <Label style="-fx-font-weight: bold;" text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextArea fx:id="txtDescription" prefRowCount="4" prefWidth="280" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <!-- Points -->
+        <Label style="-fx-font-weight: bold;" text="Points:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Spinner fx:id="spnPoints" editable="true" prefWidth="120" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <!-- Deadline -->
+        <Label style="-fx-font-weight: bold;" text="Deadline:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <DatePicker fx:id="dpDeadline" prefWidth="200" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <!-- Performer -->
+        <Label style="-fx-font-weight: bold;" text="Performer:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <ComboBox fx:id="cbPerformer" prefWidth="220" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+        <!-- Receiver -->
+        <Label style="-fx-font-weight: bold;" text="Receiver:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <ComboBox fx:id="cbReceiver" prefWidth="220" style="-fx-background-radius: 6; -fx-border-radius: 6; -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+
     </GridPane>
 
     <!-- Buttons -->
-    <HBox spacing="15" alignment="CENTER_RIGHT">
-        <Button text="Create" fx:id="btnCreate" onAction="#createActivity"/>
-        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"/>
+    <HBox alignment="CENTER_RIGHT" spacing="15">
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Button fx:id="btnCreate" onAction="#createActivity" style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;                        -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;" text="Create" />
+
+        <Button fx:id="btnClose" onAction="#closeWindow" style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;                        -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;" text="Close" />
     </HBox>
+
 </VBox>

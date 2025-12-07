@@ -32,22 +32,31 @@ public class MemberViewController {
     lblTasksCompleted.setText(String.valueOf(member.getTotalTasksCompleted()));
   }
 
+
   @FXML
-  public void initialize() {
-    btnClose.setOnAction(e -> ((Stage) btnClose.getScene().getWindow()).close());
+  private void editMember() {
+    try {
+      AppContext.get().getDashboardController().openEditWindow(member); // optional: reuse method
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+    closeWindow();
+  }
 
-    btnEdit.setOnAction(e -> {
-      try {
-        AppContext.get().getDashboardController().openEditWindow(member); // optional: reuse method
-        ((Stage) btnEdit.getScene().getWindow()).close();
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
-    });
-
-    btnDelete.setOnAction(e -> {
+  @FXML
+  private void deleteMember() {
+    try{
       memberService.deleteMember(member);
-      ((Stage) btnDelete.getScene().getWindow()).close();
-    });
+      AppContext.get().getDashboardController().loadMembersView();
+    } catch (Exception e){
+      e.printStackTrace();
+    }
+    closeWindow();
+  }
+
+  @FXML
+  private void closeWindow() {
+    Stage stage = (Stage) btnClose.getScene().getWindow();
+    stage.close();
   }
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.SettingsController"
+      spacing="20"
+      style="-fx-background-color: #f4faf3; -fx-background-radius: 12;">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- Heading -->
+    <Label text="Application Settings"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" />
+
+    <!-- Unified GridPane for aligned inputs -->
+    <GridPane hgap="20" vgap="15">
+
+        <!-- Community Points -->
+        <Label text="Community Points:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCommunityPoints"
+                   prefWidth="300"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Community Goal -->
+        <Label text="Community Goal:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCommunityGoal"
+                   prefWidth="300"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Target Points -->
+        <Label text="Target Points:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTargetPoints"
+                   prefWidth="300"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Last Reset Date -->
+        <Label text="Last Point Reset Date:" style="-fx-font-weight: bold;" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label fx:id="lblPointReset"
+               GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label text="Last Task Reset Date:" style="-fx-font-weight: bold;" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Label fx:id="lblLastReset"
+               GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button fx:id="btnResetPoints" text="Reset Member Points" onAction="#resetPointsManually"
+                style="-fx-background-color: #fff2cc; -fx-border-color: #f0b400;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button fx:id="btnReset" text="Reset COMMUNAL Tasks" onAction="#resetCommunalTasksManually"
+                style="-fx-background-color: #fff2cc; -fx-border-color: #f0b400;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button fx:id="btnSave" text="Save" onAction="#saveSettings"
+                style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button fx:id="btnClose" text="Close" onAction="#closeWindow"
+                style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+    </HBox>
+
+</VBox>

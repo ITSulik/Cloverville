@@ -2,6 +2,11 @@
   {
     "id": "a52f8a6d-d914-4bf6-9c0c-d2e9c16b72ce",
     "username": "bob1",
-    "passwordHash": "secure123"
+    "passwordHash": "secure456"
+  },
+  {
+    "id": "8f4da2fc-07e5-43d1-ad8f-51c06aac9e8e",
+    "username": "don2",
+    "passwordHash": "password789"
   }
 ]

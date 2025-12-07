@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.UserAccountController"
+      spacing="20"
+      style="-fx-background-color: #f4faf3; -fx-background-radius: 12;">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- Heading -->
+    <Label text="User Account"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" />
+
+    <!-- Unified GridPane for aligned inputs -->
+    <GridPane hgap="20" vgap="15">
+
+        <!-- Username (non-editable) -->
+        <Label text="Username:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblUsername"
+
+               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Password -->
+        <Label text="Password:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="txtPassword"
+                       prefWidth="250"
+                       style="-fx-background-radius: 6; -fx-border-radius: 6;
+                              -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Password error -->
+        <Label fx:id="lblPasswordError"
+               textFill="red"
+               style="-fx-font-size: 12;"
+               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="Save" fx:id="btnSave" onAction="#savePassword"
+                style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"
+                style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+    </HBox>
+</VBox>

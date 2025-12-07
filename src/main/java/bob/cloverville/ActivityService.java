@@ -4,18 +4,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class ActivityService {
 
-  // --- STORAGE ---
   private final JsonStorage<Activity> greenStorage;
   private final JsonStorage<Activity> tradeStorage;
   private final JsonStorage<Activity> communalStorage;
 
-  // --- IN-MEMORY LISTS ---
   private final List<Activity> greens;
   private final List<Activity> trades;
   private final List<Activity> communal;
@@ -47,97 +43,52 @@ public class ActivityService {
   // ========================================================================
   public void addActivity(Activity a) {
 
-    // -------- VALIDATION --------
-    if (a == null)
-      throw new IllegalArgumentException("Activity cannot be null.");
-
-    if (a.getType() == null)
-      throw new IllegalArgumentException("Activity type cannot be null.");
+    if (a == null) throw new IllegalArgumentException("Activity cannot be null.");
+    if (a.getType() == null) throw new IllegalArgumentException("Activity type cannot be null.");
 
     if (getById(a.getId()) != null)
       throw new IllegalStateException("Duplicate activity UUID: " + a.getId());
 
-    // Deadline passed? Remove instantly, no trace.
     if (a.getDeadline() != null && a.getDeadline().isBefore(LocalDate.now()))
       throw new IllegalArgumentException("Activity deadline is in the past and cannot be added.");
 
-    // Trades require at least performer
+    // Trade validation
     if (a.getType() == ActivityType.TRADE_TASK || a.getType() == ActivityType.TRADE_GOODS) {
 
-      if (a.getPerformerID() == null)
+      UUID performerID = a.getPerformerID();
+
+      if (performerID == null)
         throw new IllegalArgumentException("Trades require a performer.");
 
-      if (memberService.getById(a.getPerformerID()) == null)
+      if (memberService.getById(performerID) == null)
         throw new IllegalArgumentException("Performer does not exist.");
 
-      if (a.getReceiverID() != null) {
-        if (a.getReceiverID().equals(a.getPerformerID()))
-          throw new IllegalArgumentException("Receiver cannot be the performer.");
-
-        if (memberService.getById(a.getReceiverID()) == null)
-          throw new IllegalArgumentException("Receiver does not exist.");
-      }
     }
 
-    // COMMUNAL: performer must be null, deadline recommended but validated later
     if (a.getType() == ActivityType.COMMUNAL && a.getPerformerID() != null)
       throw new IllegalArgumentException("Communal activities cannot have a performer on creation.");
 
-    // -------- INSERT INTO MEMORY + STORAGE --------
-    switch (a.getType()) {
-      case GREEN:
-        greens.add(a);
-        greenStorage.save(greens);
-        HistoryWriter.write(a);
-        settingsService.addCommunityPoints(a.getPointValue());
-        break;
+    // Insert + save
+    List<Activity> list = getListByType(a.getType());
+    list.add(a);
+    saveList(list, a.getType());
 
-      case TRADE_TASK:
-      case TRADE_GOODS:
-        trades.add(a);
-        tradeStorage.save(trades);
-        break;
-
-      case COMMUNAL:
-        communal.add(a);
-        communalStorage.save(communal);
-        break;
-
-      default:
-        throw new IllegalArgumentException("Unknown activity type: " + a.getType());
+    if (a.getType() == ActivityType.GREEN) {
+      HistoryWriter.write(a);
+      settingsService.addCommunityPoints(a.getPointValue());
     }
   }
-
 
   // ========================================================================
   // DELETE ACTIVITY
   // ========================================================================
   public void deleteActivity(Activity a) {
-    if (a == null)
-      throw new IllegalArgumentException("Activity cannot be null.");
+    if (a == null) throw new IllegalArgumentException("Activity cannot be null.");
 
-    switch (a.getType()) {
-      case GREEN:
-        greens.remove(a);
-        greenStorage.save(greens);
-        break;
-
-      case TRADE_TASK:
-      case TRADE_GOODS:
-        trades.remove(a);
-        tradeStorage.save(trades);
-        break;
-
-      case COMMUNAL:
-        communal.remove(a);
-        communalStorage.save(communal);
-        break;
-
-      default:
-        throw new IllegalArgumentException("Unknown activity type: " + a.getType());
-    }
+    List<Activity> list = getListByType(a.getType());
+    list.remove(a);
+    saveList(list, a.getType());
   }
-
 
   // ========================================================================
   // FETCHERS
@@ -145,48 +96,62 @@ public class ActivityService {
   public List<Activity> getGreens() { return new ArrayList<>(greens); }
   public List<Activity> getTrades() { return new ArrayList<>(trades); }
   public List<Activity> getCommunal() { return new ArrayList<>(communal); }
-  public List<Activity> getAll(){
-    List<Activity> all = new ArrayList<>();
+
+  public List<Activity> getAll() {
+    int total = greens.size() + trades.size() + communal.size();
+    List<Activity> all = new ArrayList<>(total);
     all.addAll(greens);
     all.addAll(trades);
     all.addAll(communal);
     return all;
   }
 
-
   public Activity getById(UUID id) {
     if (id == null) return null;
 
-    for (Activity a : greens) if (a.getId().equals(id)) return a;
-    for (Activity a : trades) if (a.getId().equals(id)) return a;
-    for (Activity a : communal) if (a.getId().equals(id)) return a;
+    for (Activity a : greens)    if (a.getId().equals(id)) return a;
+    for (Activity a : trades)    if (a.getId().equals(id)) return a;
+    for (Activity a : communal)  if (a.getId().equals(id)) return a;
+
     return null;
   }
-
 
   // ========================================================================
   // COMPLETE ACTIVITY
   // ========================================================================
   public void completeActivity(UUID id) {
 
-    if (id == null)
-      throw new IllegalArgumentException("Activity ID cannot be null.");
+    if (id == null) throw new IllegalArgumentException("Activity ID cannot be null.");
 
     Activity a = getById(id);
-    if (a == null) return; // silently ignore unknown ID
+    if (a == null) return;
 
-    // COMMUNAL must have performer before completion
-    if (a.getType() == ActivityType.COMMUNAL && a.getPerformerID() == null)
+    ActivityType type = a.getType();
+
+    // Communal
+    if (type == ActivityType.COMMUNAL && a.getPerformerID() == null)
       throw new IllegalArgumentException("Communal activity must have performer before completion.");
 
-    // TRADE must have performer and receiver
-    if ((a.getType() == ActivityType.TRADE_TASK || a.getType() == ActivityType.TRADE_GOODS)) {
+    // Trade logic
+    if (type == ActivityType.TRADE_TASK || type == ActivityType.TRADE_GOODS) {
 
-      if (a.getPerformerID() == null || a.getReceiverID() == null)
+      UUID performerID = a.getPerformerID();
+      UUID receiverID = a.getReceiverID();
+
+      if (performerID == null || receiverID == null)
         throw new IllegalArgumentException("Trade requires performer and receiver before completion.");
 
-      if (a.getPerformerID().equals(a.getReceiverID()))
+      if (performerID.equals(receiverID))
         throw new IllegalArgumentException("Trade participants cannot be the same member.");
+
+      Member performer = memberService.getById(performerID);
+      Member receiver = memberService.getById(receiverID);
+
+      if (type == ActivityType.TRADE_TASK && performer.getPersonalPoints() < a.getPointValue())
+        throw new IllegalArgumentException("Performer doesn't have enough points.");
+
+      if (type == ActivityType.TRADE_GOODS && receiver.getPersonalPoints() < a.getPointValue())
+        throw new IllegalArgumentException("Receiver doesn't have enough points.");
     }
 
     a.setCompletedAt(LocalDate.now());
@@ -194,70 +159,56 @@ public class ActivityService {
 
     handlePoints(a);
 
-    switch (a.getType()) {
-      case TRADE_TASK:
-      case TRADE_GOODS:
-        trades.remove(a);
-        tradeStorage.save(trades);
-        break;
-
-      case COMMUNAL:
-        communalStorage.save(communal);
-        break;
-
-      default:
-        break;
+    if (type == ActivityType.TRADE_TASK || type == ActivityType.TRADE_GOODS) {
+      trades.remove(a);
+      tradeStorage.save(trades);
+    }
+    else if (type == ActivityType.COMMUNAL) {
+      communalStorage.save(communal);
     }
   }
-
 
   // ========================================================================
   // POINT TRANSFER
   // ========================================================================
   private void handlePoints(Activity a) {
-    Member performer =
-        a.getPerformerID() != null ? memberService.getById(a.getPerformerID()) : null;
 
-    Member receiver =
-        a.getReceiverID() != null ? memberService.getById(a.getReceiverID()) : null;
+    Member performer = a.getPerformerID() != null ? memberService.getById(a.getPerformerID()) : null;
+    Member receiver  = a.getReceiverID() != null ? memberService.getById(a.getReceiverID()) : null;
 
     switch (a.getType()) {
 
-      case COMMUNAL:
-        if (performer != null) {
-          performer.addPoints(a.getPointValue());
-          performer.incrementTasksCompleted();
-          memberService.updateMember(performer);
-        }
-        break;
+      case COMMUNAL -> {
+        performer.addPoints(a.getPointValue());
+        performer.incrementTasksCompleted();
+        memberService.updateMember(performer);
+      }
 
-      case TRADE_TASK:
-      case TRADE_GOODS:
-        if (performer != null && receiver != null) {
-          receiver.subtractPoints(a.getPointValue());
-          performer.addPoints(a.getPointValue());
-          memberService.updateMember(receiver);
-          memberService.updateMember(performer);
-        }
-        break;
+      case TRADE_TASK -> {
+        receiver.addPoints(a.getPointValue());
+        performer.subtractPoints(a.getPointValue());
+        receiver.incrementTasksCompleted();
+        memberService.updateMember(receiver);
+        memberService.updateMember(performer);
+      }
+
+      case TRADE_GOODS -> {
+        receiver.subtractPoints(a.getPointValue());
+        performer.addPoints(a.getPointValue());
+        memberService.updateMember(receiver);
+        memberService.updateMember(performer);
+      }
     }
   }
-
 
   // ========================================================================
   // WEEKLY GREEN RESET
   // ========================================================================
   public void weeklyGreenReset() {
     LocalDate now = LocalDate.now();
-
-    greens.removeIf(a ->
-        a.getCreatedAt() != null &&
-            a.getCreatedAt().plusDays(7).isBefore(now)
-    );
-
+    greens.removeIf(a -> a.getCreatedAt() != null && a.getCreatedAt().plusDays(7).isBefore(now));
     greenStorage.save(greens);
   }
-
 
   // ========================================================================
   // UPDATE ACTIVITY
@@ -271,12 +222,12 @@ public class ActivityService {
     if (current == null)
       throw new IllegalArgumentException("Activity not found: " + updated.getId());
 
-    if (!current.getType().equals(updated.getType()))
+    if (current.getType() != updated.getType())
       throw new IllegalArgumentException("Cannot change activity type.");
 
-    // Past-deadline activities cannot remain in system
     if (updated.getDeadline() != null &&
         updated.getDeadline().isBefore(LocalDate.now())) {
+
       deleteActivity(current);
       return;
     }
@@ -298,7 +249,6 @@ public class ActivityService {
     saveList(list, updated.getType());
   }
 
-
   // ========================================================================
   // HELPERS
   // ========================================================================
@@ -318,7 +268,6 @@ public class ActivityService {
     }
   }
 
-
   // ========================================================================
   // HISTORY WRITER
   // ========================================================================
@@ -328,23 +277,22 @@ public class ActivityService {
 
     public static void write(Activity a) {
       try (FileWriter w = new FileWriter(file, true)) {
-        w.write(format(a) + System.lineSeparator());
+        w.write(format(a, AppContext.get().memberService()) + System.lineSeparator());
       } catch (IOException e) {
         e.printStackTrace();
       }
     }
 
-    private static String format(Activity a) {
+    private static String format(Activity a, MemberService memberService) {
       return String.format(
           "[%s] %s | %s | %s → %s | %d points",
           a.getCreatedAt(),
           a.getType(),
           a.getTitle(),
-          a.getPerformerID(),
-          a.getReceiverID(),
+          memberService.getNameById(a.getPerformerID()),
+          memberService.getNameById(a.getReceiverID()),
           a.getPointValue()
       );
     }
   }
-
 }

@@ -15,11 +15,9 @@ public class UserAccount {
   }
 
   private void validateUsername(String name) {
-    if (name == null)
-      throw new IllegalArgumentException("Username cannot be null.");
-    if (name.isBlank())
+    if (name == null || name.isBlank())
       throw new IllegalArgumentException("Username cannot be blank.");
-    if (name.length() < 3 || name.length() > 30)
+    if (name.length() > 30)
       throw new IllegalArgumentException("Username must be 3–30 characters.");
     if (!name.matches("^\\S+$"))
       throw new IllegalArgumentException("Username cannot contain spaces.");

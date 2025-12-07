@@ -112,6 +112,9 @@ public class ActivityCreateController {
       );
 
       activityService.addActivity(a);
+      if (cbReceiver.getValue() != null && cbPerformer.getValue() != null){
+        activityService.completeActivity(a.getId());
+      }
 
       // Refresh dashboard
       AppContext.get().getDashboardController().loadTasksView();

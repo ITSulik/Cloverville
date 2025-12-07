@@ -2,30 +2,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="bob.cloverville.controllers.MemberViewController"
-      spacing="15">
+      spacing="20"
+      style="-fx-background-color: #f4faf3; -fx-background-radius: 12;">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="25" right="30" bottom="25" left="30"/>
     </padding>
 
-    <Label text="Member Details" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <!-- Heading -->
+    <Label text="Member Details"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" />
 
-    <GridPane hgap="10" vgap="10">
-        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <!-- Unified GridPane for alignment -->
+    <GridPane hgap="20" vgap="15">
+
+        <Label text="Name:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <Label fx:id="lblName" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-        <Label text="Personal Points:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label text="Personal Points:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <Label fx:id="lblPoints" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Tasks Completed:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label text="Tasks Completed:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <Label fx:id="lblTasksCompleted" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
     </GridPane>
 
-    <HBox spacing="10" alignment="center_right">
-        <Button text="Edit" fx:id="btnEdit" />
-        <Button text="Delete" fx:id="btnDelete" />
-        <Button text="Close" fx:id="btnClose" />
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="Edit" fx:id="btnEdit" onAction="#editMember"
+                style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Delete" fx:id="btnDelete" onAction="#deleteMember"
+                style="-fx-background-color: #ffe5e5; -fx-border-color: #a30000;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"
+                style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
     </HBox>
+
 </VBox>

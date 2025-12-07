@@ -6,51 +6,79 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
       fx:controller="bob.cloverville.controllers.ActivityViewController"
-      spacing="10">
+      spacing="20"
+      style="-fx-background-color: #f4faf3; -fx-background-radius: 12;">
+
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="25" right="30" bottom="25" left="30"/>
     </padding>
 
-    <Label text="Activity Details" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <!-- Header -->
+    <Label text="Activity Details"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" />
 
-    <GridPane hgap="10" vgap="10">
-        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <!-- Content Grid -->
+    <GridPane hgap="15" vgap="12">
+
+        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-        <Label text="Type:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label text="Type:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblType" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Title:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label text="Title:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblTitle" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Label text="Description:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <Label fx:id="lblDescription" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label text="Description:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
+        <Label fx:id="lblDescription" GridPane.rowIndex="3" GridPane.columnIndex="1"
+               style="-fx-wrap-text: true;"/>
 
-        <Label text="Points:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Label text="Points:" GridPane.rowIndex="4" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblPoints" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-        <Label text="Created At:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <Label text="Created At:" GridPane.rowIndex="5" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblCreatedAt" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-        <Label text="Deadline:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <Label text="Deadline:" GridPane.rowIndex="6" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblDeadline" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-        <Label text="Performer:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <Label text="Performer:" GridPane.rowIndex="7" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblPerformer" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
 
-        <Label text="Receiver:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+        <Label text="Receiver:" GridPane.rowIndex="8" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblReceiver" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
 
-        <Label text="Completed At:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+        <Label text="Completed At:" GridPane.rowIndex="9" GridPane.columnIndex="0"
+               style="-fx-font-weight: bold;"/>
         <Label fx:id="lblCompletedAt" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
     </GridPane>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Edit" fx:id="btnEdit" onAction="#editActivity"/>
-        <Button text="Delete" fx:id="btnDelete" onAction="#deleteActivity"/>
-        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"/>
+    <!-- Bottom Buttons -->
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="Edit" fx:id="btnEdit" onAction="#editActivity"
+                style="-fx-background-color: #e0f3dc; -fx-border-color: #0f5c03; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Delete" fx:id="btnDelete" onAction="#deleteActivity"
+                style="-fx-background-color: #f8e0e0; -fx-border-color: #a80000; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Close" fx:id="btnClose" onAction="#closeWindow"
+                style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-size: 14;"/>
     </HBox>
+
 </VBox>

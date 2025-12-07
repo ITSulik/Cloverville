@@ -21,7 +21,7 @@ public class ActivityEditController {
 
   @FXML private Button btnSave;
   @FXML private Button btnComplete;
-  @FXML private Button btnClose;
+  @FXML private Button btnCancel;
 
   @FXML private ComboBox<Member> cbPerformer;
   @FXML private ComboBox<Member> cbReceiver;
@@ -154,7 +154,7 @@ public class ActivityEditController {
 
       activityService.updateActivity(activity);
       AppContext.get().getDashboardController().loadTasksView();
-      closeWindow();
+      ((Stage) btnSave.getScene().getWindow()).close();
 
     } catch (Exception ex) {
       Alert a = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
@@ -177,7 +177,7 @@ public class ActivityEditController {
 
   @FXML
   private void closeWindow() {
-    Stage stage = (Stage) btnClose.getScene().getWindow();
+    Stage stage = (Stage) btnCancel.getScene().getWindow();
     stage.close();
   }
 }

@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="bob.cloverville.controllers.DashboardController"
-            prefWidth="1100" prefHeight="700">
+<BorderPane prefHeight="700" prefWidth="1100" style="-fx-background-color: #f8fcf7;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bob.cloverville.controllers.DashboardController">
 
     <!-- HEADER -->
     <top>
-        <HBox spacing="20" style="-fx-background-color: #f0f0f0; -fx-padding: 15;">
-            <Label text="Cloverville" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+        <HBox spacing="20" style="-fx-background-color: #a8f59d;              -fx-padding: 15;">
+            <Label style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #0a4604;" text="Cloverville" />
+
             <Region HBox.hgrow="ALWAYS" />
-            <Button text="User" />
-            <Button text="Settings" />
+
+            <Button fx:id="btnUser" onAction="#openUserAccount" style="-fx-background-color: #e9fce7;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;" text="User" />
+
+            <Button fx:id="btnSettings" onAction="#openSettingsWindow" style="-fx-background-color: #e9fce7;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;" text="Settings" />
         </HBox>
     </top>
 
     <!-- SIDEBAR -->
     <left>
-        <VBox spacing="10" prefWidth="180"
-              style="-fx-background-color: #e6e6e6; -fx-padding: 20;">
-            <Button fx:id="btnMembers" text="Members" prefWidth="150" />
-            <Button fx:id="btnTasks" text="Tasks" prefWidth="150" />
+        <VBox prefWidth="180" spacing="10" style="-fx-background-color: #d2e7cf;              -fx-padding: 20;">
+
+            <Button fx:id="btnMembers" prefWidth="150" style="-fx-background-color: #ffffff;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;" text="Members" />
+
+            <Button fx:id="btnTasks" prefWidth="150" style="-fx-background-color: #ffffff;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;" text="Tasks" />
+
         </VBox>
     </left>
 
@@ -36,13 +37,28 @@
 
             <!-- search row -->
             <HBox spacing="10">
-                <TextField fx:id="searchField" promptText="Search..." prefWidth="300" />
-                <Button fx:id="filterButton" text="Filter" />
+
+                <TextField fx:id="searchField" prefWidth="300" promptText="Search..." style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #ffffff; -fx-border-color: #8fc48a;" />
+
+                <ComboBox fx:id="filterComboBox" prefWidth="180" style="-fx-background-radius: 8;-fx-border-radius: 8;-fx-background-color: #ffffff;-fx-border-color: #8fc48a;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList" />
+                    </items>
+                </ComboBox>
+
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="btnAdd" text="+" style="-fx-font-size: 18; -fx-padding: 5 15;" />
+
+                <Button fx:id="btnAdd" style="-fx-font-size: 18; -fx-padding: 6 16; -fx-background-color: #e9ffe7; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #0f5c03;" text="+">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
             </HBox>
 
-            <TableView fx:id="tableView" prefHeight="600" />
+            <!-- Table container (card) -->
+            <VBox style="-fx-background-color: #ffffff;-fx-background-radius: 12;-fx-border-radius: 12;-fx-border-color: #8fc48a;-fx-padding: 5;">
+                <TableView fx:id="tableView"  prefHeight="580" style="-fx-background-color: transparent;" tableMenuButtonVisible="true" />
+            </VBox>
+
         </VBox>
     </center>
 

@@ -25,14 +25,20 @@ public class DashboardController {
   @FXML private Button btnMembers;
   @FXML private Button btnTasks;
   @FXML private Button btnAdd;
+  @FXML private Button btnUser;
 
   @FXML private TextField searchField;
   @FXML private Button filterButton;
+  @FXML private ComboBox<String> filterComboBox;
 
-  @FXML private TableView tableView;
+
+  @FXML private TableView<Object> tableView;
   @FXML private VBox mainContent;
 
   private ViewMode currentMode = ViewMode.TASKS;
+
+  private String lastFilter = "Default";
+
 
   private enum ViewMode { MEMBERS, TASKS }
 
@@ -41,9 +47,15 @@ public class DashboardController {
 
   private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+  public String getCurrentMode() {
+    return currentMode.name();
+  }
   @FXML
   public void initialize() {
+    activityService.weeklyGreenReset();
     setupButtons();
+    resetWeeklyCommunalTasks();
+    resetPersonalPointsIfDue();
     loadCurrentView();
     setupSearch();
     setupAddButton();
@@ -57,11 +69,119 @@ public class DashboardController {
           Object rowData = row.getItem();
           openViewWindow(rowData);
         }
-      });
-      return row;
+      });return row;
+    });
+    filterComboBox.getItems().clear();
+    filterComboBox.getItems().addAll(
+        "Default",
+        "Completed",
+        "With Deadline",
+        "GREEN Activities",
+        "COMMUNAL Activities",
+        "TRADE Tasks",
+        "TRADE Goods",
+        "All"
+    );
+
+    filterComboBox.setValue(lastFilter); // initial value
+    filterComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+      if (newVal == null) {
+        // don't call applyFilter with null; restore lastFilter if needed
+        filterComboBox.setValue(lastFilter);
+        return;
+      }
+      lastFilter = newVal;
+      // only apply filter when we're actually on tasks view
+      if (currentMode == ViewMode.TASKS) {
+        applyFilter(newVal);
+      }
     });
 
   }
+
+  private void applyFilter(String filter) {
+    List<Activity> allActivities = activityService.getAll();
+    List<Activity> filtered;
+
+    if (filter == null) filter = lastFilter != null ? lastFilter : "Default";
+    lastFilter = filter;
+
+    switch (filter) {
+      case "Completed":
+        filtered = allActivities.stream()
+            .filter(a -> a.getCompletedAt() != null)
+            .toList();
+        break;
+
+      case "With Deadline":
+        filtered = allActivities.stream()
+            .filter(a -> a.getDeadline() != null)
+            .toList();
+        break;
+
+      case "GREEN Activities":
+        filtered = allActivities.stream()
+            .filter(a -> a.getType() == ActivityType.GREEN)
+            .toList();
+        break;
+
+      case "COMMUNAL Activities":
+        filtered = allActivities.stream()
+            .filter(a -> a.getType() == ActivityType.COMMUNAL)
+            .toList();
+        break;
+
+      case "TRADE Tasks":
+        filtered = allActivities.stream()
+            .filter(a -> a.getType() == ActivityType.TRADE_TASK)
+            .toList();
+        break;
+
+      case "TRADE Goods":
+        filtered = allActivities.stream()
+            .filter(a -> a.getType() == ActivityType.TRADE_GOODS)
+            .toList();
+        break;
+
+      case "All":
+        filtered = allActivities;
+        break;
+
+      default: // "Default"
+        filtered = allActivities.stream()
+            .filter(a -> a.getCompletedAt() == null && a.getType() != ActivityType.GREEN)
+            .toList();
+        break;
+    }
+
+    tableView.setItems(FXCollections.observableArrayList(filtered));
+  }
+
+  private void resetWeeklyCommunalTasks() {
+    if (!AppContext.get().settingsService().isWeeklyResetDue())
+      return;
+
+    activityService.getAll().stream()
+        .filter(a -> a.getType() == ActivityType.COMMUNAL)
+        .forEach(a -> {
+          a.setDeadline(LocalDate.now().plusWeeks(1));
+          a.setCreatedAt(LocalDate.now());
+          a.setPerformerID(null);
+          activityService.updateActivity(a);
+        });
+    memberService.applyWeeklyBonusAndReset();
+
+    AppContext.get().settingsService().updateLastResetDate();
+  }
+
+  private void resetPersonalPointsIfDue() {
+    SettingsService settingsService = AppContext.get().settingsService();
+    if (settingsService.isMonthlyPointResetDue()) {
+      memberService.resetAllPoints();
+      settingsService.updatePointResetDate();
+    }
+  }
+
 
   private void setupAddButton() {
     btnAdd.setOnAction(e -> {
@@ -87,6 +207,23 @@ public class DashboardController {
       e.printStackTrace();
     }
   }
+  private void hideFilterControls() {
+    filterComboBox.setVisible(false);
+    filterComboBox.setManaged(false);
+  }
+  private void showFilterControls() {
+    filterComboBox.setVisible(true);
+    filterComboBox.setManaged(true);
+
+    if (filterComboBox.getValue() == null) {
+      filterComboBox.setValue(lastFilter != null ? lastFilter : "Default");
+    } else {
+      // re-apply current value to ensure listener runs/visual matches internal
+      String v = filterComboBox.getValue();
+      filterComboBox.setValue(v);
+    }
+  }
+
 
   private void openCreateActivity() {
     try {
@@ -138,60 +275,91 @@ public class DashboardController {
   }
 
   public void loadMembersView() {
+    hideFilterControls();
     tableView.getColumns().clear();
 
-    TableColumn<Member, String> nameCol = new TableColumn<>("Name");
-    nameCol.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getName()));
+    TableColumn<Object, String> nameCol = new TableColumn<>("Name");
+    nameCol.setCellValueFactory(cell -> {
+      Member m = (Member) cell.getValue();
+      return new SimpleStringProperty(m.getName());
+    });
 
-    TableColumn<Member, Number> ppCol = new TableColumn<>("Personal Points");
-    ppCol.setCellValueFactory(cell -> new SimpleIntegerProperty(cell.getValue().getPersonalPoints()));
+    TableColumn<Object, Number> ppCol = new TableColumn<>("Personal Points");
+    ppCol.setCellValueFactory(cell -> {
+      Member m = (Member) cell.getValue();
+      return new SimpleIntegerProperty(m.getPersonalPoints());
+    });
 
-    TableColumn<Member, Number> tcCol = new TableColumn<>("Tasks Completed");
-    tcCol.setCellValueFactory(cell -> new SimpleIntegerProperty(cell.getValue().getTotalTasksCompleted()));
+    TableColumn<Object, Number> tcCol = new TableColumn<>("Tasks Completed");
+    tcCol.setCellValueFactory(cell -> {
+      Member m = (Member) cell.getValue();
+      return new SimpleIntegerProperty(m.getTotalTasksCompleted());
+    });
 
-    tableView.getColumns().addAll(nameCol, ppCol, tcCol);
-    tableView.getColumns().add(buildActionsColumn());
+    tableView.getColumns().addAll(nameCol, ppCol, tcCol,buildActionsColumn());
 
     tableView.setItems(FXCollections.observableArrayList(memberService.getAll()));
   }
 
   public void loadTasksView() {
+    showFilterControls();
+
     tableView.getColumns().clear();
 
-    TableColumn<Activity, String> titleCol = new TableColumn<>("Title");
-    titleCol.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getTitle()));
+    TableColumn<Object, String> titleCol = new TableColumn<>("Title");
+    titleCol.setCellValueFactory(cell -> {
+      Activity a = (Activity) cell.getValue();
+      return new SimpleStringProperty(a.getTitle());
+    });
 
-    TableColumn<Activity, String> typeCol = new TableColumn<>("Type");
-    typeCol.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getType().name()));
+    TableColumn<Object, String> typeCol = new TableColumn<>("Type");
+    typeCol.setCellValueFactory(cell -> {
+      Activity a = (Activity) cell.getValue();
+      return new SimpleStringProperty(a.getType().name());
+    });
 
-    TableColumn<Activity, Number> pointsCol = new TableColumn<>("Points");
-    pointsCol.setCellValueFactory(cell -> new SimpleIntegerProperty(cell.getValue().getPointValue()));
+    TableColumn<Object, Number> pointsCol = new TableColumn<>("Points");
+    pointsCol.setCellValueFactory(cell -> {
+      Activity a = (Activity) cell.getValue();
+      return new SimpleIntegerProperty(a.getPointValue());
+    });
 
-    TableColumn<Activity, String> deadlineCol = new TableColumn<>("Deadline");
+    TableColumn<Object, String> deadlineCol = new TableColumn<>("Deadline");
     deadlineCol.setCellValueFactory(cell -> {
-      LocalDate d = cell.getValue().getDeadline();
+      Activity a = (Activity) cell.getValue();
+      LocalDate d = a.getDeadline();
       return new SimpleStringProperty(d != null ? d.toString() : "");
     });
 
-    TableColumn<Activity, String> performerCol = new TableColumn<>("Performer");
+
+    // ---------- PERFORMER ----------
+    TableColumn<Object, String> performerCol = new TableColumn<>("Performer");
     performerCol.setCellValueFactory(cell -> {
-      UUID pid = cell.getValue().getPerformerID();
+      Activity a = (Activity) cell.getValue();
+      UUID pid = a.getPerformerID();
       Member m = pid != null ? memberService.getById(pid) : null;
       return new SimpleStringProperty(m != null ? m.getName() : "");
     });
 
-    TableColumn<Activity, String> receiverCol = new TableColumn<>("Receiver");
+    // ---------- RECEIVER ----------
+    TableColumn<Object, String> receiverCol = new TableColumn<>("Receiver");
     receiverCol.setCellValueFactory(cell -> {
-      UUID rid = cell.getValue().getReceiverID();
+      Activity a = (Activity) cell.getValue();
+      UUID rid = a.getReceiverID();
       Member m = rid != null ? memberService.getById(rid) : null;
       return new SimpleStringProperty(m != null ? m.getName() : "");
     });
 
-    tableView.getColumns().addAll(titleCol, typeCol, pointsCol, deadlineCol, performerCol, receiverCol);
-    tableView.getColumns().add(buildActionsColumn());
+    tableView.getColumns().addAll(titleCol, typeCol, pointsCol, deadlineCol, performerCol, receiverCol, buildActionsColumn());
 
-    tableView.setItems(FXCollections.observableArrayList(activityService.getAll()));
+    // ---------- APPLY LAST USED FILTER ----------
+    String filter = filterComboBox.getValue();
+    if (filter == null) filter = lastFilter != null ? lastFilter : "Default";
+
+    applyFilter(filter);
   }
+
+
 
 
   // ---------------------------------------------------------
@@ -203,20 +371,80 @@ public class DashboardController {
 
   private void applySearch(String query) {
     if (currentMode == ViewMode.MEMBERS) {
-      List<Member> filtered = memberService.getAll().stream()
-          .filter(m -> m.getName().toLowerCase().contains(query.toLowerCase()))
-          .collect(Collectors.toList());
-      tableView.setItems(FXCollections.observableArrayList(filtered));
-    } else {
-      List<Activity> filtered = activityService.getAll().stream()
-          .filter(a -> a.getTitle().toLowerCase().contains(query.toLowerCase()))
-          .collect(Collectors.toList());
-      tableView.setItems(FXCollections.observableArrayList(filtered));
+      List<Member> allMembers = memberService.getAll();
+      if (query.isBlank()) {
+        tableView.setItems(FXCollections.observableArrayList(allMembers));
+        return;
+      }
+
+      tableView.setItems(
+          FXCollections.observableArrayList(
+              allMembers.stream()
+                  .filter(m -> m.getName().toLowerCase().contains(query.toLowerCase()))
+                  .toList()
+          )
+      );
+      return;
     }
+
+    // TASKS SEARCH + FILTER COMBINATION
+    List<Activity> filteredActivities;
+
+    switch (lastFilter != null ? lastFilter : "Default") {
+      case "Completed":
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getCompletedAt() != null)
+            .toList();
+        break;
+      case "With Deadline":
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getDeadline() != null)
+            .toList();
+        break;
+      case "GREEN Activities":
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getType() == ActivityType.GREEN)
+            .toList();
+        break;
+      case "COMMUNAL Activities":
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getType() == ActivityType.COMMUNAL)
+            .toList();
+        break;
+      case "TRADE Tasks":
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getType() == ActivityType.TRADE_TASK)
+            .toList();
+        break;
+      case "TRADE Goods":
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getType() == ActivityType.TRADE_GOODS)
+            .toList();
+        break;
+      case "All":
+        filteredActivities = activityService.getAll();
+        break;
+      default: // "Default"
+        filteredActivities = activityService.getAll().stream()
+            .filter(a -> a.getCompletedAt() == null && a.getType() != ActivityType.GREEN)
+            .toList();
+        break;
+    }
+
+    if (!query.isBlank()) {
+      filteredActivities = filteredActivities.stream()
+          .filter(a -> a.getTitle().toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+
+    tableView.setItems(FXCollections.observableArrayList(filteredActivities));
   }
 
-  private <T> TableColumn<T, Void> buildActionsColumn() {
-    TableColumn<T, Void> col = new TableColumn<>("Actions");
+
+
+
+  private TableColumn<Object, Void> buildActionsColumn() {
+    TableColumn<Object, Void> col = new TableColumn<>("Actions");
 
     col.setCellFactory(param -> new TableCell<>() {
 
@@ -226,17 +454,17 @@ public class DashboardController {
 
       {
         btnView.setOnAction(e -> {
-          T item = getTableView().getItems().get(getIndex());
+          Object item = getTableView().getItems().get(getIndex());
           openViewWindow(item);
         });
 
         btnEdit.setOnAction(e -> {
-          T item = getTableView().getItems().get(getIndex());
+          Object item = getTableView().getItems().get(getIndex());
           openEditWindow(item);
         });
 
         btnDelete.setOnAction(e -> {
-          T item = getTableView().getItems().get(getIndex());
+          Object item = getTableView().getItems().get(getIndex());
           deleteItem(item);
         });
 
@@ -322,6 +550,44 @@ public class DashboardController {
       loadTasksView();
     }
   }
+
+  @FXML
+  private void openUserAccount() {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/bob/cloverville/userAcc.fxml"));
+      Stage stage = new Stage();
+      stage.setTitle("User Account");
+      stage.setScene(new Scene(loader.load()));
+      stage.initModality(Modality.APPLICATION_MODAL);
+
+      // Pass the current logged-in user
+      UserAccountController controller = loader.getController();
+      controller.setUser(AppContext.get().getCurrentUser()); // make sure you have currentUser in AppContext
+
+      stage.showAndWait();
+    } catch (Exception e) {
+      e.printStackTrace();
+      Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to open User Account window.", ButtonType.OK);
+      alert.showAndWait();
+    }
+  }
+
+  @FXML
+  private void openSettingsWindow() {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/bob/cloverville/settings.fxml"));
+      Stage stage = new Stage();
+      stage.setTitle("Application Settings");
+      stage.setScene(new Scene(loader.load()));
+      stage.initModality(Modality.APPLICATION_MODAL); // blocks dashboard until closed
+      stage.showAndWait();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to open Settings window.", ButtonType.OK);
+      alert.showAndWait();
+    }
+  }
+
 
 
 }
