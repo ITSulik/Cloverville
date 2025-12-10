@@ -25,7 +25,7 @@ public class Member {
     if (name == null || name.isBlank())
       throw new IllegalArgumentException("Name cannot be empty");
 
-    if (!name.matches("[a-zA-Z0-9 ]+"))
+    if (!name.matches("[a-zA-Z0-9 ]+( \\([0-9]+\\))?"))
       throw new IllegalArgumentException("Name cannot contain special characters");
 
     this.name = name;

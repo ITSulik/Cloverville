@@ -24,9 +24,9 @@
     <left>
         <VBox prefWidth="180" spacing="10" style="-fx-background-color: #d2e7cf;              -fx-padding: 20;">
 
-            <Button fx:id="btnMembers" prefWidth="150" style="-fx-background-color: #ffffff;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;" text="Members" />
+            <Button fx:id="btnMembers" prefWidth="150"  text="Members" />
 
-            <Button fx:id="btnTasks" prefWidth="150" style="-fx-background-color: #ffffff;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;" text="Tasks" />
+            <Button fx:id="btnTasks" prefWidth="150" text="Activities" />
 
         </VBox>
     </left>

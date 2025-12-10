@@ -111,7 +111,7 @@ public class ActivityEditController {
         dpDeadline.setDisable(false);
         cbPerformer.setDisable(false); // performer will be assigned later
         cbReceiver.setDisable(true);
-        btnComplete.setDisable(false);
+        btnComplete.setDisable(activity.getCompletedAt() != null);
         break;
 
       case TRADE_TASK:

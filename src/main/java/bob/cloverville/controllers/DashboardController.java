@@ -259,11 +259,11 @@ public class DashboardController {
   }
 
   private void highlightSelectedButton() {
-    btnMembers.setStyle("");
-    btnTasks.setStyle("");
+    btnMembers.setStyle("-fx-background-color: #ffffff;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;");
+    btnTasks.setStyle("-fx-background-color: #ffffff;  -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;");
 
-    if (currentMode == ViewMode.MEMBERS) btnMembers.setStyle("-fx-background-color: #cfcfcf;");
-    else btnTasks.setStyle("-fx-background-color: #cfcfcf;");
+    if (currentMode == ViewMode.MEMBERS) btnMembers.setStyle("-fx-background-color: #cfcfcf; -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;");
+    else btnTasks.setStyle("-fx-background-color: #cfcfcf; -fx-background-radius: 8;  -fx-border-radius: 8;  -fx-border-color: #8fc48a;");
   }
 
   // ---------------------------------------------------------
@@ -465,8 +465,20 @@ public class DashboardController {
 
         btnDelete.setOnAction(e -> {
           Object item = getTableView().getItems().get(getIndex());
-          deleteItem(item);
+
+          Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+          confirm.setTitle("Confirm Delete");
+          confirm.setHeaderText(null);
+          confirm.setContentText("Are you sure you want to delete this item?");
+
+          // Wait for user response
+          confirm.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+              deleteItem(item);
+            }
+          });
         });
+
 
         btnView.setStyle("-fx-font-size: 14px;");
         btnEdit.setStyle("-fx-font-size: 14px;");

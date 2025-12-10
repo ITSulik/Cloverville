@@ -47,7 +47,7 @@ public class AppContext {
         new JsonStorage<>("website/json/settings.json", Settings.class);
 
     JsonStorage<UserAccount> userStorage =
-        new JsonStorage<>("website/json/account.json", USER_LIST_TYPE);
+        new JsonStorage<>("Json/account.json", USER_LIST_TYPE);
 
     this.memberService = new MemberService("website/json/members.json");
     this.settingsService = new SettingsService(settingsStorage);

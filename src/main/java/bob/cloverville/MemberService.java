@@ -127,12 +127,17 @@ public class MemberService {
 
     validateMember(updated);
 
-    stored.setName(updated.getName());
+    // Only generate a new unique name if the name actually changed
+    if (!stored.getName().equals(updated.getName())) {
+      stored.setName(generateUniqueName(updated.getName()));
+    }
+
     stored.setPoints(updated.getPersonalPoints());
     stored.setTotalTasksCompleted(updated.getTotalTasksCompleted());
 
     save();
   }
+
 
   public void resetAllPoints() {
     for (Member m : members.values()) {

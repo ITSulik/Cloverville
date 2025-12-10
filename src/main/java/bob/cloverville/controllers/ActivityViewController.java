@@ -2,7 +2,9 @@ package bob.cloverville.controllers;
 
 import bob.cloverville.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -60,13 +62,24 @@ public class ActivityViewController {
   }
   @FXML
   private void deleteActivity() {
-    try {
-      activityService.deleteActivity(activity);
-      AppContext.get().getDashboardController().loadTasksView();
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-    closeWindow();
+    Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+    confirm.setTitle("Confirm Delete");
+    confirm.setHeaderText(null);
+    confirm.setContentText("Are you sure you want to delete this activity?");
+
+    confirm.showAndWait().ifPresent(response -> {
+      if (response == ButtonType.OK) {
+        try {
+          activityService.deleteActivity(activity);
+          AppContext.get().getDashboardController().loadTasksView();
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
+
+        closeWindow();
+      }
+    });
   }
+
 
 }
