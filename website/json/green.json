@@ -1,0 +1,50 @@
+[
+  {
+    "id": "46798842-4f84-426f-85b9-cd6eb1bcaa72",
+    "type": "GREEN",
+    "title": "Watered the plants",
+    "description": "Watered community garden zone A",
+    "pointValue": 5,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-05",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "b7a4b96f-92ac-4ae7-9335-6bc0fc0c1f35",
+    "type": "GREEN",
+    "title": "Cycled to work",
+    "description": "Used bike instead of a car",
+    "pointValue": 6,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-05",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "f1279d12-a3ef-4a49-a9ea-c7195b1a67cf",
+    "type": "GREEN",
+    "title": "Saved electricity",
+    "description": "Turned off lights and devices before leaving",
+    "pointValue": 4,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-05",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "a9c8b2bd-7148-45a2-a094-0475377e35ad",
+    "type": "GREEN",
+    "title": "Repaired an item",
+    "description": "Fixed a thing instead of buying a new one",
+    "pointValue": 7,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-05",
+    "deadline": null,
+    "completedAt": null
+  }
+]

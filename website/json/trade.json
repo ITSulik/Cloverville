@@ -1,0 +1,50 @@
+[
+  {
+    "id": "000f37c5-dadc-49a2-8c44-60b50d705c16",
+    "type": "TRADE_TASK",
+    "title": "Room cleaning help",
+    "description": "I can help you clean your house",
+    "pointValue": 7,
+    "performerID": "d67af39d-b4ed-4e40-8709-33afb26b8d0e",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "4a3f0e5a-ca7e-4d3f-b24e-d873cf490da7",
+    "type": "TRADE_TASK",
+    "title": "Heavy lifting",
+    "description": "Help with moving furniture or heavy boxes",
+    "pointValue": 10,
+    "performerID": "e1d2cb1c-71ae-4e92-bf8b-2cb7ff9ceac5",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  },
+  {
+    "id": "29ade272-0de3-4f01-ac90-10871775d53f",
+    "type": "TRADE_TASK",
+    "title": "Garden watering",
+    "description": "Watering your plants while you are on holiday",
+    "pointValue": 15,
+    "performerID": "e2bde388-b79b-4b8e-84a4-ff8a4670b921",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-10",
+    "completedAt": null
+  },
+  {
+    "id": "9d2e4d7e-c317-49c7-ac39-a65aca22874a",
+    "type": "TRADE_TASK",
+    "title": "Handmade soap",
+    "description": "Eco-friendly lavender soap bar",
+    "pointValue": 13,
+    "performerID": "c0d39a66-acc5-49ba-bb07-8e8f3fb6765d",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": null,
+    "completedAt": null
+  }
+]

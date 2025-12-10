@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #689f38;
+  --font-main: "Segoe UI", -apple-system, Arial, Verdana, sans-serif;
+  --radius-card: 8px;
+  --color-accent: #e65100;
+  --color-bg-body: #eee;
+  --color-bg-card: #fff;
+  --color-text-main: #333;
+  --color-text-muted: #a19d9d;
+}
+
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures footer stays at the bottom */
+}
+
+/* Navigation Bar */
+.topnav {
+  background-color: var(--color-primary);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.topnav a {
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  padding: 18px 20px;
+  text-decoration: none;
+}
+
+.topnav a.logo {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+}
+.topnav a.logo img {
+  height: 21px;
+  width: 104px;
+}
+
+.topnav a:hover {
+  color: #eeeeee;
+}
+
+/* Hide hamburger icon on desktop by default */
+.topnav .icon {
+  display: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  flex: 1;
+}
+
+section {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-card);
+  max-width: 960px;
+  padding: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Intro Image Responsive Sizing */
+.intro-image {
+  width: 100%;
+  max-width: 960px; /* Constrain max width for better desktop aesthetics */
+  height: auto;
+  aspect-ratio: 21 / 9; /* Wide banner feel on desktop */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+/* Grid Layout for Cards (Green Actions / Communal Tasks / Trades) */
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+  gap: 20px;
+}
+
+/* Card Component */
+.card {
+  border: 1px solid #ddd;
+  border-radius: var(--radius-card);
+  padding: 15px;
+  background-color: var(--color-bg-card);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+.price {
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-top: 10px;
+}
+
+.author {
+  color: var(--color-text-muted);
+  margin-bottom: 5px;
+}
+
+.points-box {
+  text-align: center;
+  background-color: #f3f9ed;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #c8e6c9;
+}
+
+.points-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* Team Section */
+.team-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.team-member {
+  text-align: center;
+  width: 150px;
+}
+.team-member img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-bg-body);
+  object-fit: cover;
+}
+.team-member a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.team-member a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 15px;
+  margin-top: auto;
+  border-top: 1px solid #dbdbdb;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 5px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Tablet view: 2 columns grid + Mobile Navigation */
+@media screen and (max-width: 900px) {
+  /* Grid Layout: 2 Columns */
+  .grid-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Navigation: Switch to Hamburger */
+  .topnav {
+    justify-content: space-between;
+  }
+  .topnav a {
+    display: none;
+  }
+  .topnav a.logo {
+    display: flex;
+  }
+  .topnav a.icon {
+    display: block;
+    font-size: 18px;
+    padding: 18px 20px;
+  }
+
+  /* Expanded Menu State */
+  .topnav.responsive {
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    display: block;
+    text-align: left;
+  }
+}
+
+/* Mobile view: 1 column */
+@media screen and (max-width: 600px) {
+  .intro-image {
+    aspect-ratio: 16 / 9; /* Taller on mobile for better visibility */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+  .grid-list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -35,21 +35,21 @@ public class AppContext {
   private AppContext() {
 
     JsonStorage<Activity> greenStorage =
-        new JsonStorage<>("json/green.json", ACTIVITY_LIST_TYPE);
+        new JsonStorage<>("website/json/green.json", ACTIVITY_LIST_TYPE);
 
     JsonStorage<Activity> tradeStorage =
-        new JsonStorage<>("json/trade.json", ACTIVITY_LIST_TYPE);
+        new JsonStorage<>("website/json/trade.json", ACTIVITY_LIST_TYPE);
 
     JsonStorage<Activity> communalStorage =
-        new JsonStorage<>("json/communal.json", ACTIVITY_LIST_TYPE);
+        new JsonStorage<>("website/json/communal.json", ACTIVITY_LIST_TYPE);
 
     JsonStorage<Settings> settingsStorage =
-        new JsonStorage<>("json/settings.json", Settings.class);
+        new JsonStorage<>("website/json/settings.json", Settings.class);
 
     JsonStorage<UserAccount> userStorage =
-        new JsonStorage<>("json/account.json", USER_LIST_TYPE);
+        new JsonStorage<>("website/json/account.json", USER_LIST_TYPE);
 
-    this.memberService = new MemberService("json/members.json");
+    this.memberService = new MemberService("website/json/members.json");
     this.settingsService = new SettingsService(settingsStorage);
     this.activityService = new ActivityService(
         greenStorage,
