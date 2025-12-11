@@ -52,6 +52,7 @@ public class DashboardController {
   }
   @FXML
   public void initialize() {
+    tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
     activityService.weeklyGreenReset();
     setupButtons();
     resetWeeklyCommunalTasks();
