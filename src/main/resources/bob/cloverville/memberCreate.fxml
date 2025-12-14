@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" style="-fx-background-color: #f4faf3; -fx-background-radius: 12;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bob.cloverville.controllers.MemberCreateController">
+
+    <padding>
+        <Insets bottom="25" left="30" right="30" top="25" />
+    </padding>
+
+    <!-- Heading -->
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" text="Create Member" />
+
+    <!-- Unified GridPane for aligned inputs -->
+    <GridPane hgap="20" vgap="15">
+
+        <!-- Name -->
+        <Label style="-fx-font-weight: bold;" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtName" prefWidth="320" style="-fx-background-radius: 6; -fx-border-radius: 6;                           -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <!-- Personal Points -->
+        <Label style="-fx-font-weight: bold;" text="Points:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Spinner fx:id="spnPoints" editable="true" prefWidth="120" style="-fx-background-radius: 6; -fx-border-radius: 6;                         -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <!-- Tasks Completed -->
+        <Label style="-fx-font-weight: bold;" text="Tasks Completed:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Spinner fx:id="spnTasksCompleted" editable="true" prefWidth="120" style="-fx-background-radius: 6; -fx-border-radius: 6;                         -fx-background-color: #ffffff; -fx-border-color: #7db271;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox alignment="CENTER_RIGHT" spacing="15">
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Button fx:id="btnCreate" onAction="#createMember" style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;                        -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;" text="Create" />
+
+        <Button fx:id="btnClose" onAction="#closeWindow" style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;                        -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;" text="Close" />
+    </HBox>
+
+</VBox>

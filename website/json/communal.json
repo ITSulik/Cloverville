@@ -1,0 +1,50 @@
+[
+  {
+    "id": "8e4dfc81-7f39-4437-8c4d-1a7fd347a5c9",
+    "type": "COMMUNAL",
+    "title": "Organize movie night",
+    "description": "Set up projector and seating",
+    "pointValue": 15,
+    "performerID": "cbdbb270-4719-42b6-8906-eaa9c19b2bfb",
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-14",
+    "completedAt": "2025-12-10"
+  },
+  {
+    "id": "1c0190d0-2fda-4219-a249-b547d341d30b",
+    "type": "COMMUNAL",
+    "title": "Prepare community dinner",
+    "description": "Cook vegan meal for 15 residents",
+    "pointValue": 12,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-14",
+    "completedAt": null
+  },
+  {
+    "id": "91abfc9a-bc8e-4c3b-a593-57b137a73f45",
+    "type": "COMMUNAL",
+    "title": "Repair park bench",
+    "description": "Fix loose screws and clean the wooden bench in the park",
+    "pointValue": 10,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-14",
+    "completedAt": null
+  },
+  {
+    "id": "ea4e37b8-47a4-4ddf-a48b-5c4b75997358",
+    "type": "COMMUNAL",
+    "title": "Setup morning yoga",
+    "description": "Lay out mats and prepare the space for the yoga class",
+    "pointValue": 11,
+    "performerID": null,
+    "receiverID": null,
+    "createdAt": "2025-12-07",
+    "deadline": "2025-12-14",
+    "completedAt": null
+  }
+]

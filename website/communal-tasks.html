@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Description and Author for better search visibility -->
+    <meta
+      name="description"
+      content="Browse shared communal tasks to help the Cloverville community and earn Personal Points."
+    />
+    <meta name="author" content="Group 8 - VIA University College" />
+
+    <title>Cloverville - Communal Tasks</title>
+
+    <!-- Styles & Favicon -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="images/icon.svg" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <!-- Using <nav> and aria-labels helps screen readers understand page structure -->
+    <nav class="topnav" id="myTopnav" aria-label="Main navigation">
+      <a href="index.html" class="logo">
+        <img
+          src="images/logo.svg"
+          alt="Cloverville Logo"
+          width="104"
+          height="21"
+        />
+      </a>
+
+      <a href="total-points.html">Total Points</a>
+      <a href="green-actions.html">Green Actions</a>
+
+      <!-- 'aria-current' indicates the active page -->
+      <a href="communal-tasks.html" class="active" aria-current="page"
+        >Communal Tasks</a
+      >
+
+      <a href="trade-offers.html">Trade Offers</a>
+      <a href="contact-us.html">Contact Us</a>
+
+      <!-- Mobile Menu Toggle -->
+      <a
+        href="javascript:void(0);"
+        class="icon"
+        onclick="toggleMenu()"
+        role="button"
+        aria-label="Open menu"
+      >
+        &#9776;
+      </a>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="container">
+      <section>
+        <!-- Changed h2 to h1 for proper document outline -->
+        <h1>Communal Tasks</h1>
+        <p>
+          These are shared tasks that benefit the whole village (e.g., cleaning,
+          organizing events). Completing these earns you
+          <strong>Personal Points</strong>.
+        </p>
+
+        <!-- Dynamic content loaded via JS -->
+        <div id="communal-list" class="grid-list">
+          <p>Loading communal tasks...</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <a href="contact-us.html">Contact Us</a>
+      <p>&copy; 2025 Cloverville</p>
+      <p>Group 8 - VIA University College</p>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

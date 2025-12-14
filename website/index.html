@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Description and Author for better search visibility -->
+    <meta
+      name="description"
+      content="Cloverville is a sustainable eco-village focused on green actions, community tasks, and resource sharing."
+    />
+    <meta name="author" content="Group 8 - VIA University College" />
+
+    <title>Cloverville - Home</title>
+
+    <!-- Styles & Favicon -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="images/icon.svg" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <!-- Using <nav> and aria-labels helps screen readers understand page structure -->
+    <nav class="topnav" id="myTopnav" aria-label="Main navigation">
+      <a href="index.html" class="logo" aria-current="page">
+        <img
+          src="images/logo.svg"
+          alt="Cloverville Logo"
+          width="104"
+          height="21"
+        />
+      </a>
+
+      <a href="total-points.html">Total Points</a>
+      <a href="green-actions.html">Green Actions</a>
+      <a href="communal-tasks.html">Communal Tasks</a>
+      <a href="trade-offers.html">Trade Offers</a>
+      <a href="contact-us.html">Contact Us</a>
+
+      <a
+        href="javascript:void(0);"
+        class="icon"
+        onclick="toggleMenu()"
+        role="button"
+        aria-label="Open menu"
+      >
+        &#9776;
+      </a>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="container">
+      <section>
+        <h1>Welcome to Cloverville</h1>
+
+        <img
+          src="images/picture.webp"
+          alt="Scenic view of Cloverville eco-village nature"
+          class="intro-image"
+          width="960"
+          height="411"
+          loading="lazy"
+        />
+        <!-- "loading=lazy" improves performance by loading images only when needed -->
+
+        <p>
+          Cloverville is a small eco-village where 42 people live sustainably.
+          We grow our own vegetables, share resources, and care for the
+          environment together.
+        </p>
+
+        <h2>Our Philosophy</h2>
+        <p>
+          Life in Cloverville is built on three core values: collaboration,
+          fairness, and caring for nature. We believe in the "invisible work" –
+          the small, daily actions that keep our community strong but often go
+          unnoticed.
+        </p>
+        <p>
+          This website helps us visualize our collective impact. Every green
+          action counts!
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <a href="contact-us.html">Contact Us</a>
+      <p>&copy; 2025 Cloverville</p>
+      <p>Group 8 - VIA University College</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

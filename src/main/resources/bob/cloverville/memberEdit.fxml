@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.MemberEditController"
+      spacing="20"
+      style="-fx-background-color: #f4faf3; -fx-background-radius: 12;">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <!-- Heading -->
+    <Label text="Edit Member"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" />
+
+    <!-- Unified GridPane for aligned inputs -->
+    <GridPane hgap="20" vgap="15">
+
+        <Label text="Name:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtName"
+                   prefWidth="320"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Personal Points:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtPoints"
+                   prefWidth="120"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Tasks Completed:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTasksCompleted"
+                   prefWidth="120"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="Save" fx:id="btnSave" onAction="#saveChanges"
+                style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Cancel" fx:id="btnCancel" onAction="#closeWindow"
+                style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+    </HBox>
+
+</VBox>

@@ -1,0 +1,254 @@
+{
+  "b28e5ae0-0bdf-4a6b-9c18-9d50a0a3f1ac": {
+    "id": "b28e5ae0-0bdf-4a6b-9c18-9d50a0a3f1ac",
+    "name": "Alice Morgan",
+    "personalPoints": 1,
+    "totalTasksCompleted": 3
+  },
+  "e1d2cb1c-71ae-4e92-bf8b-2cb7ff9ceac5": {
+    "id": "e1d2cb1c-71ae-4e92-bf8b-2cb7ff9ceac5",
+    "name": "John Carter",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "b59a143e-0ea4-4b7b-95cf-1ce3dfe37f4d": {
+    "id": "b59a143e-0ea4-4b7b-95cf-1ce3dfe37f4d",
+    "name": "Sofia Delgado",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "a5f0c685-1cae-4f24-ae41-c9a3b7cf7422": {
+    "id": "a5f0c685-1cae-4f24-ae41-c9a3b7cf7422",
+    "name": "Ethan Novak",
+    "personalPoints": 19,
+    "totalTasksCompleted": 3
+  },
+  "c9310831-819a-4c98-854b-0d20b5103a36": {
+    "id": "c9310831-819a-4c98-854b-0d20b5103a36",
+    "name": "Laura Kim",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "d4e79221-51d3-4776-8c3d-01c3df682a1f": {
+    "id": "d4e79221-51d3-4776-8c3d-01c3df682a1f",
+    "name": "Mark Spencer",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "f0f1adb2-7a95-4a09-ae39-3d4fc8dcd3b0": {
+    "id": "f0f1adb2-7a95-4a09-ae39-3d4fc8dcd3b0",
+    "name": "Olivia Becker",
+    "personalPoints": 10,
+    "totalTasksCompleted": 5
+  },
+  "f5e9a812-634e-45ea-8b6b-37055cc0b5d4": {
+    "id": "f5e9a812-634e-45ea-8b6b-37055cc0b5d4",
+    "name": "Victor Hansen",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "a2dd5343-d9c6-4e4d-a7c2-0c1df2b402d2": {
+    "id": "a2dd5343-d9c6-4e4d-a7c2-0c1df2b402d2",
+    "name": "Emily Zhao",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "e3ce1bfa-9ab3-4a06-8b40-11a9964bbd3a": {
+    "id": "e3ce1bfa-9ab3-4a06-8b40-11a9964bbd3a",
+    "name": "Leonard Rossi",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "dc81b7d0-2860-4d80-8a60-8bb49e3a9813": {
+    "id": "dc81b7d0-2860-4d80-8a60-8bb49e3a9813",
+    "name": "Natalie Hart",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "ae494a45-6bb0-4db8-a3af-96478e9cf5cc": {
+    "id": "ae494a45-6bb0-4db8-a3af-96478e9cf5cc",
+    "name": "Gabriel Ivanov",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "f1756d31-68a0-4f16-b151-2b7eed993bba": {
+    "id": "f1756d31-68a0-4f16-b151-2b7eed993bba",
+    "name": "Isabella Hayes",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "c0d39a66-acc5-49ba-bb07-8e8f3fb6765d": {
+    "id": "c0d39a66-acc5-49ba-bb07-8e8f3fb6765d",
+    "name": "Daniel Morales",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "bb8f15c6-7cdb-4b23-a0e8-14551aeb32f0": {
+    "id": "bb8f15c6-7cdb-4b23-a0e8-14551aeb32f0",
+    "name": "Mia Andersen",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "e82cf1b5-d056-4cb7-9915-3c684d3b61aa": {
+    "id": "e82cf1b5-d056-4cb7-9915-3c684d3b61aa",
+    "name": "Samuel Klein",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "b9fbc5c7-10c1-4e87-91eb-dfa6977af642": {
+    "id": "b9fbc5c7-10c1-4e87-91eb-dfa6977af642",
+    "name": "Chloe Martin",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "c863c6f9-8d20-4a6d-8309-d6b8b3b0de2a": {
+    "id": "c863c6f9-8d20-4a6d-8309-d6b8b3b0de2a",
+    "name": "Ryan Cooper",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "da7f3c83-e7e8-47e5-8180-1abd8ac88f4e": {
+    "id": "da7f3c83-e7e8-47e5-8180-1abd8ac88f4e",
+    "name": "Julia Richter",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "f88242c8-c422-42c3-9ad4-88b180df7bff": {
+    "id": "f88242c8-c422-42c3-9ad4-88b180df7bff",
+    "name": "Oscar Wagner",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "a21e8c83-9475-42ed-a28f-f6681419548a": {
+    "id": "a21e8c83-9475-42ed-a28f-f6681419548a",
+    "name": "Hannah Schultz",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "cbdbb270-4719-42b6-8906-eaa9c19b2bfb": {
+    "id": "cbdbb270-4719-42b6-8906-eaa9c19b2bfb",
+    "name": "Alex Cooper",
+    "personalPoints": 20,
+    "totalTasksCompleted": 2
+  },
+  "e2bde388-b79b-4b8e-84a4-ff8a4670b921": {
+    "id": "e2bde388-b79b-4b8e-84a4-ff8a4670b921",
+    "name": "Lara Schmidt",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "b71a29d4-d9fa-4e88-93d0-3e65a9ff3b0b": {
+    "id": "b71a29d4-d9fa-4e88-93d0-3e65a9ff3b0b",
+    "name": "Nicholas Ford",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "cc6c6cc5-f83b-4b7f-9754-bf7da998c46c": {
+    "id": "cc6c6cc5-f83b-4b7f-9754-bf7da998c46c",
+    "name": "Eva Kuznetsov",
+    "personalPoints": 10,
+    "totalTasksCompleted": 5
+  },
+  "ae0a8a60-f80e-45be-ae76-35b8af68b897": {
+    "id": "ae0a8a60-f80e-45be-ae76-35b8af68b897",
+    "name": "David Ortega",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "d67af39d-b4ed-4e40-8709-33afb26b8d0e": {
+    "id": "d67af39d-b4ed-4e40-8709-33afb26b8d0e",
+    "name": "Ariana Flores",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "bba860e2-37e2-41f7-8d51-b6a381f94f2c": {
+    "id": "bba860e2-37e2-41f7-8d51-b6a381f94f2c",
+    "name": "Josh Miller",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "d9c5aee2-e0cf-40a4-8ba0-770fc3651a3e": {
+    "id": "d9c5aee2-e0cf-40a4-8ba0-770fc3651a3e",
+    "name": "Monica Stein",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "a95f41e2-b785-4e4e-87fb-0324681abe30": {
+    "id": "a95f41e2-b785-4e4e-87fb-0324681abe30",
+    "name": "Jason Park",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "c515b4e4-0737-46e1-8af2-de1e201c4e82": {
+    "id": "c515b4e4-0737-46e1-8af2-de1e201c4e82",
+    "name": "Sophia Bennett",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "dab9e900-b910-49e9-8e5b-33792f2eb191": {
+    "id": "dab9e900-b910-49e9-8e5b-33792f2eb191",
+    "name": "Eric Johansson",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "ed6a6d7b-0c4f-4f78-a6ef-6dbdf1e3bf29": {
+    "id": "ed6a6d7b-0c4f-4f78-a6ef-6dbdf1e3bf29",
+    "name": "Clara Peterson",
+    "personalPoints": 15,
+    "totalTasksCompleted": 1
+  },
+  "c68cd5e3-8b64-4e58-9f5b-ecf9f65116fd": {
+    "id": "c68cd5e3-8b64-4e58-9f5b-ecf9f65116fd",
+    "name": "Lucas Werner",
+    "personalPoints": 10,
+    "totalTasksCompleted": 5
+  },
+  "f2a8b3d3-644e-4a6f-88b4-2b59bb635565": {
+    "id": "f2a8b3d3-644e-4a6f-88b4-2b59bb635565",
+    "name": "Diana Kurth",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "b2194458-e0f2-4ef2-af01-b42261c4049a": {
+    "id": "b2194458-e0f2-4ef2-af01-b42261c4049a",
+    "name": "Felix Meyer",
+    "personalPoints": 10,
+    "totalTasksCompleted": 3
+  },
+  "c51ecb83-e883-4276-bf42-65407e42b065": {
+    "id": "c51ecb83-e883-4276-bf42-65407e42b065",
+    "name": "Noah Jensen",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "e52ec4c2-b531-4bd0-b3e6-2b2deefc42ac": {
+    "id": "e52ec4c2-b531-4bd0-b3e6-2b2deefc42ac",
+    "name": "Valeria Costa",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  },
+  "fbe99e19-fcd4-4cee-bd5a-ff0f161fd80d": {
+    "id": "fbe99e19-fcd4-4cee-bd5a-ff0f161fd80d",
+    "name": "Peter Hoffmann",
+    "personalPoints": 10,
+    "totalTasksCompleted": 1
+  },
+  "d1f66323-84b2-4a06-9cd3-640eee10fd91": {
+    "id": "d1f66323-84b2-4a06-9cd3-640eee10fd91",
+    "name": "Adriana Vargas",
+    "personalPoints": 10,
+    "totalTasksCompleted": 5
+  },
+  "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54": {
+    "id": "c1b8c0fe-1a92-4e4e-9f4d-52d69615cb54",
+    "name": "Bob Green",
+    "personalPoints": 10,
+    "totalTasksCompleted": 2
+  },
+  "aa8bb761-c406-49e9-bfad-7d89f7ff9794": {
+    "id": "aa8bb761-c406-49e9-bfad-7d89f7ff9794",
+    "name": "Don Green",
+    "personalPoints": 10,
+    "totalTasksCompleted": 4
+  }
+}

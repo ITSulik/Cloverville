@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="bob.cloverville.controllers.ActivityEditController"
+      spacing="20"
+      style="-fx-background-color: #f4faf3; -fx-background-radius: 12;">
+
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <Label text="Edit Activity"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #0f5c03;" />
+
+
+    <!-- UNIFIED GRID FOR PERFECT ALIGNMENT -->
+    <GridPane hgap="20" vgap="15">
+
+        <!-- ID -->
+        <Label text="ID:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblId"
+               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Created -->
+        <Label text="Created At:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="lblCreatedAt"
+               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Title -->
+        <Label text="Title:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTitle"
+                   prefWidth="320"
+                   style="-fx-background-radius: 6; -fx-border-radius: 6;
+                          -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Description -->
+        <Label text="Description:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtDescription"
+                  prefRowCount="4"
+                  wrapText="true"
+                  prefWidth="320"
+                  style="-fx-background-radius: 6; -fx-border-radius: 6;
+                         -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                  GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Points -->
+        <Label text="Points:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Spinner fx:id="spnPoints"
+                 prefWidth="120"
+                 style="-fx-background-radius: 6; -fx-border-radius: 6;
+                        -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                 GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <!-- Deadline -->
+        <Label text="Deadline:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dpDeadline"
+                    prefWidth="200"
+                    style="-fx-background-radius: 6; -fx-border-radius: 6;
+                           -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                    GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <!-- Performer -->
+        <Label text="Performer:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbPerformer"
+                  prefWidth="220"
+                  style="-fx-background-radius: 6; -fx-border-radius: 6;
+                         -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                  GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <!-- Receiver -->
+        <Label text="Receiver:" style="-fx-font-weight: bold;"
+               GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbReceiver"
+                  prefWidth="220"
+                  style="-fx-background-radius: 6; -fx-border-radius: 6;
+                         -fx-background-color: #ffffff; -fx-border-color: #7db271;"
+                  GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+    </GridPane>
+
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="Save" fx:id="btnSave" onAction="#saveChanges"
+                style="-fx-background-color: #d8f3d1; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Complete Activity"
+                fx:id="btnComplete"
+                onAction="#completeActivity"
+                style="-fx-background-color: #e5f0ff; -fx-border-color: #0043a3;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+
+        <Button text="Cancel"
+                fx:id="btnCancel"
+                onAction="#closeWindow"
+                style="-fx-background-color: #edfceb; -fx-border-color: #0f5c03;
+                       -fx-background-radius: 6; -fx-border-radius: 6; -fx-font-size: 14;"/>
+    </HBox>
+
+</VBox>
