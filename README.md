@@ -115,9 +115,9 @@ A complete **User Guide** is included in the repository (`UserGuide.pdf`). It co
 
 ## Team Roles
 
-* **Java Application Development:** [Your Name]
-* **Website Development:** Team Member 2
-* **Documentation and Testing:** Team Members 3 & 4
+* **Java Application Development:** Medvetchi Valentin
+* **Website Development:** Vladyslav Averin
+* **Documentation and Testing:** Mateo Peche & Javier Vincenti
 
 Collaboration was coordinated using version control, with weekly meetings and shared documentation to ensure alignment.
 
