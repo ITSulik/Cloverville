@@ -52,7 +52,7 @@ The application aims to simplify task tracking, encourage sustainability, and pr
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ITSulik/Cloverville
 ```
 
 2. Open the project in **IntelliJ IDEA** (or any preferred Java IDE).
